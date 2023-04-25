@@ -1,4 +1,4 @@
-const contentContainer = document.querySelector('#content-container');
+const contentContainer = document.querySelector('#content-container')
 const cartCounterLabel = document.querySelector('#cart-counter-label');
 
 let cartCounter = 0;
@@ -7,10 +7,11 @@ let cartPrice = 0;
 const btnClickHandler = (e) => {
   const target = e.target;
   const interval = 2000;
-
   let restoreHTML = null;
 
   if (typeof target !== 'object') return;
+
+  // if (!target.classList.contains('item-actions__cart')) return;
   if (!target.matches('.item-actions__cart')) return;
 
   incrementCounter(cartCounterLabel, ++cartCounter);
@@ -25,20 +26,21 @@ const btnClickHandler = (e) => {
     target.innerHTML = restoreHTML;
     enableControls(target, contentContainer, btnClickHandler);
   }, interval);
-};
+}
 
 contentContainer.addEventListener('click', btnClickHandler);
 
 function incrementCounter($label, cn) {
-  $label.innerHTML = `${cn}`;
+  $label.innerHTML = cn;
+
   if (cn === 1) $label.style.display = 'block';
 }
 
 function getMockData(t) {
   return +t.parentElement
-      .previousElementSibling
-      .innerHTML
-      .replace(/^\$(\d+)\s\D+(\d+).*$/, '$1.$2');
+    .previousElementSibling
+    .innerHTML
+    .replace(/^\$(\d+)\s+\D+(\d+).*$/, '$1.$2');
 }
 
 function getPrice(t, p, cb) {
