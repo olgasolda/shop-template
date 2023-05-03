@@ -26,12 +26,12 @@ const btnClickHandler = (e) => {
     target.innerHTML = restoreHTML;
     enableControls(target, contentContainer, btnClickHandler);
   }, interval);
-}
+};
 
 contentContainer.addEventListener('click', btnClickHandler);
 
 function incrementCounter($label, cn) {
-  $label.innerHTML = cn;
+  $label.innerHTML = `${cn}`;
 
   if (cn === 1) $label.style.display = 'block';
 }
